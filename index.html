@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Ongles de Cassandre - Salon de Manucure à Créteil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #ffd93d;
+            --accent-color: #ff4757;
+            --dark-color: #2d3436;
+            --light-color: #fff;
+            --gradient: linear-gradient(135deg, #ff6b9d 0%, #feca57 100%);
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            overflow-x: hidden;
+            background: #ffeef4;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+        
+        /* Ensure nav stays on top of modals */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            gap: 2rem;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--primary-color);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 3rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '✨';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .about-image {
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+            background: var(--gradient);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(20px);
+        }
+        
+        /* Services */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: all 0.5s ease;
+            transform: rotate(45deg);
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .price-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 1.5rem;
+            padding-bottom: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .price-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .price-item:hover::before {
+            opacity: 1;
+        }
+        
+        .price-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        
+        /* Contact */
+        .contact {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 2% auto;
+            margin-bottom: 2%;
+            padding: 0;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Fix modal position */
+        .modal {
+            padding: 80px 20px 20px 20px;
+        }
+        
+        .modal-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .modal-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: shimmer 15s linear infinite;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            min-height: 200px;
+            max-height: 60vh;
+        }
+        
+        /* Modal scroll indicator */
+        .modal-body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-body.has-scroll::after {
+            opacity: 1;
+        }
+        .modal::-webkit-scrollbar,
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal::-webkit-scrollbar-track,
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .modal::-webkit-scrollbar-thumb,
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        .modal::-webkit-scrollbar-thumb:hover,
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .modal-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-details p {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .detail-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .detail-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            flex-shrink: 0;
+        }
+        
+        .modal-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .modal-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .modal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .price-item {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .price-item::after {
+            content: 'Cliquez pour plus de détails';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .price-item:hover::after {
+            opacity: 1;
+            bottom: -20px;
+        }
+        
+        .price-item:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .modal-content {
+                margin: 10px auto;
+                width: 95%;
+                max-height: calc(100vh - 20px);
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Body scroll lock class */
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        /* Floating Elements */
+        .floating-nail {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .nail1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .nail2 { top: 20%; right: 10%; animation-delay: 1s; }
+        .nail3 { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .nail4 { bottom: 10%; right: 20%; animation-delay: 3s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="sparkles">
+            <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 40%; left: 30%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="top: 60%; left: 50%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="top: 30%; left: 70%; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 50%; left: 90%; animation-delay: 2s;"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Les Ongles de Cassandre</h1>
+            <p>Votre salon de beauté des mains et des pieds à Créteil</p>
+            <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" class="btn" target="_blank">Prendre Rendez-vous</a>
+        </div>
+        <div class="floating-nail nail1">💅</div>
+        <div class="floating-nail nail2">✨</div>
+        <div class="floating-nail nail3">💅</div>
+        <div class="floating-nail nail4">✨</div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos">
+        <h2 class="section-title">À Propos</h2>
+        <div class="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Bienvenue chez Les Ongles de Cassandre</h3>
+                    <p>Situé au cœur de Créteil dans l'institut Glam & Glow, Les Ongles de Cassandre est votre destination privilégiée pour sublimer vos mains et vos pieds.</p>
+                    <p>Dans une atmosphère chaleureuse et zen, Cassandre, notre experte passionnée, vous accueille pour des prestations de qualité dans un cadre élégant et apaisant.</p>
+                    <p>Que vous recherchiez une manucure simple ou un nail art sophistiqué, nous garantissons des résultats impeccables grâce à notre savoir-faire et notre expérience.</p>
+                </div>
+                <div class="about-image">
+                    <div style="background: var(--gradient); border-radius: 20px; padding: 3rem; text-align: center; color: white;">
+                        <div style="font-size: 5rem;">💅</div>
+                        <p style="margin-top: 1rem; font-weight: bold;">Excellence & Passion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">✋</div>
+                <h3>Beauté des Mains</h3>
+                <p>Soins complets pour des mains douces et élégantes : trempage, retrait des cuticules, limage et polissage.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👣</div>
+                <h3>Beauté des Pieds</h3>
+                <p>Soins professionnels pour des pieds parfaits : trempage, soins des cuticules, limage, polissage et râpe.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💎</div>
+                <h3>Vernis Semi-Permanent</h3>
+                <p>Une tenue longue durée et une brillance éclatante pour vos ongles des mains et des pieds.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Ongles en Gel</h3>
+                <p>Gainage et remplissage gel pour des ongles renforcés et naturels, avec ou sans vernis.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👁️</div>
+                <h3>Beauté du Regard</h3>
+                <p>Microshading et ombre brows pour restructurer votre regard avec un effet naturel et durable.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Nail Art</h3>
+                <p>Des créations uniques et personnalisées pour exprimer votre style et votre personnalité.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="tarifs">
+        <h2 class="section-title">Nos Tarifs</h2>
+        <div class="pricing-grid">
+            <div class="price-item" onclick="openModal('modal-beaute-mains')">
+                <h4>Beauté des mains</h4>
+                <p class="price">20€</p>
+                <p>20 minutes</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-beaute-mains-vsp')">
+                <h4>Beauté des mains + VSP</h4>
+                <p class="price">40€</p>
+                <p>1 heure</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-vsp-mains')">
+                <h4>VSP mains sans beauté</h4>
+                <p class="price">29€</p>
+                <p>45 minutes</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-beaute-pieds')">
+                <h4>Beauté des pieds</h4>
+                <p class="price">25€</p>
+                <p>30 minutes</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-beaute-pieds-vsp')">
+                <h4>Beauté des pieds + VSP</h4>
+                <p class="price">43€</p>
+                <p>1h30</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-vsp-pieds')">
+                <h4>VSP pieds sans beauté</h4>
+                <p class="price">32€</p>
+                <p>45 minutes</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-gainage-gel')">
+                <h4>Gainage Gel Mains</h4>
+                <p class="price">45€</p>
+                <p>1h30</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-gainage-gel-vsp')">
+                <h4>Gainage Gel + VSP</h4>
+                <p class="price">50€</p>
+                <p>1h30</p>
+            </div>
+            <div class="price-item" onclick="openModal('modal-microshading')">
+                <h4>Microshading</h4>
+                <p class="price">250€</p>
+                <p>3 heures</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #666;">
+            *La dépose du vernis semi-permanent n'est pas comprise dans les tarifs (8€ supplémentaires)
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact & Localisation</h2>
+        <div class="contact">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i>📍</i>
+                    <h4>Adresse</h4>
+                    <p>9 Pl. de la Croix des Mèches<br>94000 Créteil<br>(Institut Glam & Glow)</p>
+                </div>
+                <div class="contact-item">
+                    <i>📞</i>
+                    <h4>Téléphone</h4>
+                    <p>06 77 51 30 41<br>(Pour les prestations Microshading)</p>
+                </div>
+                <div class="contact-item">
+                    <i>📅</i>
+                    <h4>Réservation</h4>
+                    <p>En ligne sur Planity<br>Du lundi au samedi</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem;">
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" class="btn" target="_blank" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    Réserver Maintenant
+                </a>
+                <p style="margin-top: 1rem; color: #666;">Réservation rapide et sécurisée sur Planity</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Les Ongles de Cassandre - Tous droits réservés</p>
+        <p>Créé avec ❤️ pour sublimer vos ongles</p>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Modal Beauté des mains -->
+    <div id="modal-beaute-mains" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-beaute-mains')">&times;</span>
+                <h3>Beauté des Mains</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    ✋✨
+                </div>
+                <div class="modal-details">
+                    <p>Offrez à vos mains le soin qu'elles méritent avec notre prestation beauté des mains complète.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">💧</span>
+                        <div>
+                            <strong>Bain émollient</strong>
+                            <p>Trempage des mains dans une eau tiède parfumée pour adoucir la peau</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">✂️</span>
+                        <div>
+                            <strong>Soin des cuticules</strong>
+                            <p>Retrait minutieux des cuticules pour des ongles nets et soignés</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📐</span>
+                        <div>
+                            <strong>Limage parfait</strong>
+                            <p>Mise en forme personnalisée selon vos préférences</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💎</span>
+                        <div>
+                            <strong>Polissage</strong>
+                            <p>Brillance naturelle pour des ongles éclatants</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">20€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Beauté des mains + VSP -->
+    <div id="modal-beaute-mains-vsp" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-beaute-mains-vsp')">&times;</span>
+                <h3>Beauté des Mains + Vernis Semi-Permanent</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    💅🌟
+                </div>
+                <div class="modal-details">
+                    <p>Le soin complet alliant beauté des mains et vernis semi-permanent pour une manucure parfaite et durable.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌸</span>
+                        <div>
+                            <strong>Soin complet des mains</strong>
+                            <p>Tous les soins de la beauté des mains inclus : bain, cuticules, limage et polissage</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎨</span>
+                        <div>
+                            <strong>Vernis semi-permanent</strong>
+                            <p>Large choix de couleurs pour une tenue parfaite jusqu'à 3 semaines</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">✨</span>
+                        <div>
+                            <strong>Finition professionnelle</strong>
+                            <p>Brillance miroir et protection optimale de vos ongles</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : La dépose du vernis semi-permanent n'est pas comprise (8€ supplémentaires)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">40€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal VSP mains sans beauté -->
+    <div id="modal-vsp-mains" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-vsp-mains')">&times;</span>
+                <h3>Vernis Semi-Permanent Mains</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    💅✨
+                </div>
+                <div class="modal-details">
+                    <p>Application rapide et efficace d'un vernis semi-permanent pour des ongles impeccables.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏱️</span>
+                        <div>
+                            <strong>Service express</strong>
+                            <p>45 minutes pour des ongles parfaits</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📐</span>
+                        <div>
+                            <strong>Limage inclus</strong>
+                            <p>Mise en forme des ongles avant l'application</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎨</span>
+                        <div>
+                            <strong>Couleurs tendance</strong>
+                            <p>Large palette de couleurs et finitions au choix</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : Sans soin des cuticules. Dépose non comprise (8€)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">29€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Beauté des pieds -->
+    <div id="modal-beaute-pieds" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-beaute-pieds')">&times;</span>
+                <h3>Beauté des Pieds</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    👣💝
+                </div>
+                <div class="modal-details">
+                    <p>Un soin complet pour des pieds doux, soignés et sublimés.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🛁</span>
+                        <div>
+                            <strong>Bain relaxant</strong>
+                            <p>Trempage des pieds dans une eau émolliente parfumée</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">✂️</span>
+                        <div>
+                            <strong>Soin des cuticules</strong>
+                            <p>Retrait délicat pour des ongles impeccables</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🔧</span>
+                        <div>
+                            <strong>Râpe professionnelle</strong>
+                            <p>Élimination des callosités pour une peau douce</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💎</span>
+                        <div>
+                            <strong>Limage et polissage</strong>
+                            <p>Finition parfaite pour des ongles brillants</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">25€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Beauté des pieds + VSP -->
+    <div id="modal-beaute-pieds-vsp" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-beaute-pieds-vsp')">&times;</span>
+                <h3>Beauté des Pieds + Vernis Semi-Permanent</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    👣💅
+                </div>
+                <div class="modal-details">
+                    <p>Le soin ultime pour des pieds magnifiques avec une couleur longue durée.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌺</span>
+                        <div>
+                            <strong>Soin complet inclus</strong>
+                            <p>Tous les soins de la beauté des pieds : bain, cuticules, râpe, limage</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎨</span>
+                        <div>
+                            <strong>Vernis semi-permanent</strong>
+                            <p>Application professionnelle pour une tenue parfaite</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏰</span>
+                        <div>
+                            <strong>Durée du soin</strong>
+                            <p>1h30 de pure détente et de soins</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : La dépose du vernis semi-permanent n'est pas comprise (8€)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">43€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal VSP pieds sans beauté -->
+    <div id="modal-vsp-pieds" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-vsp-pieds')">&times;</span>
+                <h3>Vernis Semi-Permanent Pieds</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    👣✨
+                </div>
+                <div class="modal-details">
+                    <p>Application express de vernis semi-permanent pour des pieds colorés et brillants.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <div>
+                            <strong>Service ciblé</strong>
+                            <p>Focus sur l'application du vernis semi-permanent</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📐</span>
+                        <div>
+                            <strong>Limage inclus</strong>
+                            <p>Mise en forme avant application</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💅</span>
+                        <div>
+                            <strong>Longue tenue</strong>
+                            <p>Jusqu'à 4 semaines de couleur éclatante</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : Sans soin complet des pieds. Dépose non comprise (8€)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">32€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Gainage Gel Mains -->
+    <div id="modal-gainage-gel" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-gainage-gel')">&times;</span>
+                <h3>Gainage Gel Mains</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    💪💅
+                </div>
+                <div class="modal-details">
+                    <p>Renforcez vos ongles naturels avec notre technique de gainage gel professionnelle.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🛡️</span>
+                        <div>
+                            <strong>Protection renforcée</strong>
+                            <p>Application de gel sur ongle naturel pour solidifier</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌿</span>
+                        <div>
+                            <strong>Aspect naturel</strong>
+                            <p>Sans extension, respecte la longueur naturelle</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">✨</span>
+                        <div>
+                            <strong>Finition parfaite</strong>
+                            <p>Retrait des cuticules, limage et polissage inclus</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : Sans application de vernis. Dépose éventuelle non comprise (8€)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">45€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Gainage Gel + VSP -->
+    <div id="modal-gainage-gel-vsp" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-gainage-gel-vsp')">&times;</span>
+                <h3>Gainage Gel + Vernis Semi-Permanent</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    💎💅
+                </div>
+                <div class="modal-details">
+                    <p>La combinaison parfaite : solidité du gel et beauté du vernis semi-permanent.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🔒</span>
+                        <div>
+                            <strong>Double protection</strong>
+                            <p>Gel de renforcement + vernis longue durée</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎨</span>
+                        <div>
+                            <strong>Couleur au choix</strong>
+                            <p>Large gamme de vernis semi-permanents</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⭐</span>
+                        <div>
+                            <strong>Résultat optimal</strong>
+                            <p>Ongles forts, brillants et colorés</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                        Note : La dépose du vernis semi-permanent n'est pas comprise (8€)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">50€</span>
+                <a href="https://www.planity.com/les-ongles-de-cassandre-94000-creteil" target="_blank" class="modal-btn">
+                    Réserver <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Microshading -->
+    <div id="modal-microshading" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('modal-microshading')">&times;</span>
+                <h3>Microshading / Ombre Brows</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    👁️‍🗨️✨
+                </div>
+                <div class="modal-details">
+                    <p>Maquillage permanent des sourcils pour un regard sublime au quotidien.</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎯</span>
+                        <div>
+                            <strong>Technique professionnelle</strong>
+                            <p>Ombrage subtil et réaliste adapté à vos sourcils</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌟</span>
+                        <div>
+                            <strong>Effet naturel</strong>
+                            <p>Restructure le regard tout en restant discret</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏳</span>
+                        <div>
+                            <strong>Longue durée</strong>
+                            <p>Résultat pendant 1 à 2 ans selon le type de peau</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📞</span>
+                        <div>
+                            <strong>Sur rendez-vous uniquement</strong>
+                            <p>Contactez le 06 77 51 30 41 pour réserver</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="modal-price">250€</span>
+                <a href="tel:0677513041" class="modal-btn">
+                    Appeler <span>📞</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = "block";
+            document.body.classList.add('modal-open');
+            // Scroll modal to top
+            modal.scrollTop = 0;
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.classList.remove('modal-open');
+            }
+        }
+
+        // ESC key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.classList.remove('modal-open');
+                    }
+                });
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            
+            // Animate elements on scroll
+            const elements = document.querySelectorAll('.service-card, .price-item');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.service-card, .price-item');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            });
+        });
+
+        // Add interactive hover effects
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body>
+</html>
